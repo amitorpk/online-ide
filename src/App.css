@@ -1,38 +1,208 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
+  position: relative;
+}
+
+.App .top-header {
+  height: 3rem;
+  width: 100%;
+  background-color: hsl(225, 6%, 25%);
+}
+
+.App .ide .header {
+  height: 2.5rem;
+  width: 100%;
+  background-color: #e0e0e0;
+  display: flex;
+  align-items: center;
+}
+
+.App .ide .header .button {
+  display: flex;
+  height: 2rem;
+  width: 5rem;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+
+  padding: 0.5rem 2rem;
+  text-align: center;
+
+  font-size: 1rem;
 }
 
-.App-link {
-  color: #61dafb;
+.App .split {
+  height: calc(100vh - 3rem);
+  width: 100%;
+  display: flex;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.App .question {
+  width: 100%;
+  height: 100%;
+}
+.App .ide {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+/*}.gutter {
+  background-color: #eee;
+
+  background-repeat: no-repeat;
+  background-position: 50%;
+}
+
+.gutter.gutter-horizontal {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==");
+  cursor: col-resize;
+}
+
+.gutter.gutter-vertical {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=");
+  cursor: row-resize;
+}*/
+
+.ace_scrollbar {
+  display: none !important;
+}
+
+.ace_sb {
+  display: none !important;
+}
+
+.App .ide .ide-con {
+  height: calc(100%);
+  width: 100%;
+}
+
+.App .ide .ide-con .compiler {
+  height: 35%;
+  width: 100%;
+}
+
+.Resizer {
+  background: #000;
+  opacity: 0.2;
+  z-index: 1;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding;
+  background-clip: padding-box;
+}
+
+.Resizer:hover {
+  -webkit-transition: all 2s ease;
+  transition: all 2s ease;
+}
+
+.Resizer.horizontal {
+  min-height: 13px;
+  margin: -5px 0;
+  border-top: 5px solid rgba(255, 255, 255, 0);
+  border-bottom: 5px solid rgba(255, 255, 255, 0);
+  cursor: row-resize;
+  width: 100%;
+  background-color: blueviolet;
+}
+
+.Resizer.horizontal:hover {
+  border-top: 5px solid rgba(0, 0, 0, 0.5);
+  border-bottom: 5px solid rgba(0, 0, 0, 0.5);
+}
+
+.Resizer.vertical {
+  width: 16px;
+  margin: 0 -5px;
+  border-left: 5px solid rgba(255, 255, 255, 0);
+  border-right: 5px solid rgba(255, 255, 255, 0);
+  cursor: col-resize;
+  background-color: blueviolet;
+}
+
+.Resizer.vertical:hover {
+  border-left: 2px solid rgba(0, 0, 0, 0.5);
+  border-right: 2px solid rgba(0, 0, 0, 0.5);
+}
+.Resizer.disabled {
+  cursor: not-allowed;
+}
+.Resizer.disabled:hover {
+  border-color: transparent;
+}
+
+.App .ide .down-header {
+  height: 6%;
+  width: 100%;
+  background-color: #000;
+  display: flex;
+  align-items: center;
+}
+
+.App .ide .split-con {
+  height: calc(100% - 2.5rem);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.Dropdown-control {
+  display: flex;
+  align-items: center;
+
+  height: 2.1rem;
+  width: 100%;
+}
+
+.Dropdown-root {
+  margin-left: 1rem;
+  width: 7rem;
+}
+
+.App .ide .split-con .upper-con {
+  height: calc(70%);
+  position: relative;
+  transition-property: height;
+  animation-timing-function: cubic-bezier(0.1, -0.6, 0.2, 0);
+  transition-duration: 500ms;
+}
+
+.App .ide .split-con .upper-con-open {
+  height: calc(70% + 24%);
+  width: 100%;
+  position: relative;
+}
+
+.App .ide .split-con .con-open {
+  height: 24%;
+  width: 100%;
+  transition-property: height;
+  animation-timing-function: cubic-bezier(0.1, -0.6, 0.2, 0);
+  transition-duration: 500ms;
+}
+.App .ide .split-con .con-close {
+  height: 0;
+  transition-property: height;
+  animation-timing-function: cubic-bezier(0.1, -0.6, 0.2, 0);
+  transition-duration: 500ms;
+}
+
+.App .ide .down-header button {
+  padding: 0.3rem 1rem;
+  margin-left: 1rem;
+}
+
+.ace_content {
+  height: 100%;
 }

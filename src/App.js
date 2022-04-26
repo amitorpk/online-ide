@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Ide from "./Editor/Ide";
+import Question from "./Question";
+
+import SplitPane from "react-split-pane";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <div className="top-header"></div>
+      <div className="split">
+        <SplitPane
+          style={{ height: "100%", position: "relative" }}
+          defaultSize="50%"
         >
-          Learn React
-        </a>
-      </header>
+          <Question />
+          <Ide />
+        </SplitPane>
+      </div>
     </div>
   );
 }
-
 export default App;
